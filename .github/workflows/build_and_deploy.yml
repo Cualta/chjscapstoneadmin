@@ -31,21 +31,21 @@ jobs:
         if: ${{env.BRANCH_NAME == 'test'}}
         run: |
           echo "APP_PORT=3103" >> $GITHUB_ENV
-      # - name: Prepare APP_DOMAIN
-      #   run: |
-      #     echo "APP_DOMAIN=$( echo ${{ env.BRANCH_NAME }}).admin.chjscapstone.com" >> $GITHUB_ENV
-      # - name: print environments
-      #   run: |
-      #     echo "${{ env.APP_VERSION }}"
-      #     echo "${{ env.REPO_NAME }}"
-      #     echo "${{ env.BRANCH_NAME }}"
-      #     echo "${{ env.APP_PORT }}"
-      #     echo "${{ env.APP_DOMAIN }}"
-      # - name: Login to Docker Hub
-      #   uses: docker/login-action@v2
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Prepare APP_DOMAIN
+        run: |
+          echo "APP_DOMAIN=$( echo ${{ env.BRANCH_NAME }}).admin.chjscapstone.com" >> $GITHUB_ENV
+      - name: print environments
+        run: |
+          echo "${{ env.APP_VERSION }}"
+          echo "${{ env.REPO_NAME }}"
+          echo "${{ env.BRANCH_NAME }}"
+          echo "${{ env.APP_PORT }}"
+          echo "${{ env.APP_DOMAIN }}"
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # - name: Build and push
       #   uses: docker/build-push-action@v3
